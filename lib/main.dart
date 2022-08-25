@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sort/lists.dart';
 import 'package:sort/qsort.dart';
@@ -79,7 +80,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     int high = values.length - 1;
                     int low = 0;
                     List<int> result = quickSort(values, low, high);
-                    print(result);
+                    if (kDebugMode) {
+                      print(result);
+                    }
                     DateTime endTime = DateTime.now();
                     debugPrint('Время окончания: $endTime');
                   }),
