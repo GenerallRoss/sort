@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:sort/lists.dart';
 import 'package:sort/qsort.dart';
 
+import 'binary_search.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -75,6 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () {
+                    print(values);
                     DateTime startTime = DateTime.now();
                     debugPrint('Время начала: $startTime');
                     int high = values.length - 1;
@@ -85,6 +88,26 @@ class _MyHomePageState extends State<MyHomePage> {
                     }
                     DateTime endTime = DateTime.now();
                     debugPrint('Время окончания: $endTime');
+                  }),
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            Material(
+              borderRadius: BorderRadius.circular(5),
+              elevation: 5,
+              color: Colors.blue,
+              child: MaterialButton(
+                  child: const Text(
+                    'Бинарный поиск',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () {
+                    debugPrint('Время начала: ${DateTime.now()}');
+                    int min = 0;
+                    int max = values.length - 1;
+                    myBinarySearch(values, 354, min, max);
+                    debugPrint('Время окончания: ${DateTime.now()}');
                   }),
             ),
           ],
