@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:sort/graph.dart';
 import 'package:sort/lists.dart';
 import 'package:sort/qsort.dart';
-
 import 'binary_search.dart';
 
 void main() {
@@ -77,7 +77,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () {
-                    print(values);
+                    if (kDebugMode) {
+                      print(values);
+                    }
                     DateTime startTime = DateTime.now();
                     debugPrint('Время начала: $startTime');
                     int high = values.length - 1;
@@ -108,6 +110,23 @@ class _MyHomePageState extends State<MyHomePage> {
                     int max = values.length - 1;
                     myBinarySearch(values, 354, min, max);
                     debugPrint('Время окончания: ${DateTime.now()}');
+                  }),
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            Material(
+              borderRadius: BorderRadius.circular(5),
+              elevation: 5,
+              color: Colors.blue,
+              child: MaterialButton(
+                  child: const Text(
+                    'Поиск в глубину и ширину',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () {
+                    MyGraph graph = initGraph();
+                    print('0');
                   }),
             ),
           ],
