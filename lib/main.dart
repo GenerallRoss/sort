@@ -127,6 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () {
                     MyGraph graph = initGraph();
                     BFSgraph(0, graph, [], []);
+                    DFSgraph(6, graph, []);
                   }),
             ),
           ],

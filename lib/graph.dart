@@ -76,3 +76,19 @@ void BFSgraph(int searchValue, MyGraph graph, List<int> checkedValues,
     debugPrint('Искомого значения нет в графе');
   }
 }
+
+// ignore: non_constant_identifier_names
+void DFSgraph(int searchValue, MyGraph graph, List<MyGraph> searchedGraphs) {
+  if (graph.value == searchValue) {
+    debugPrint('Значение найдено');
+    return;
+  } else if (graph.nextGraphs != null) {
+    searchedGraphs.add(graph);
+    for (int i = 0; i < graph.nextGraphs!.length; i++) {
+      if (!searchedGraphs.contains(graph.nextGraphs![i])) {
+        debugPrint('Проверяем ${graph.nextGraphs![i].value}');
+        DFSgraph(searchValue, graph.nextGraphs![i], searchedGraphs);
+      }
+    }
+  }
+}
