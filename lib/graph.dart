@@ -44,12 +44,14 @@ MyGraph initGraph() {
   return firstGraph;
 }
 
-void searchGraph(int searchValue, MyGraph graph, List<int> checkedValues,
+// Поиск в ширину (breadth-first search)
+// ignore: non_constant_identifier_names
+void BFSgraph(int searchValue, MyGraph graph, List<int> checkedValues,
     List<MyGraph> checkedGraphs) {
   if (graph.value == searchValue) {
     debugPrint('Искомое значение найдено');
     return;
-  } else {
+  } else if (graph.nextGraphs != null) {
     checkedValues.add(graph.value);
     for (int i = 0; i < graph.nextGraphs!.length; i++) {
       if (!checkedValues.contains(graph.nextGraphs![i].value)) {
@@ -65,10 +67,12 @@ void searchGraph(int searchValue, MyGraph graph, List<int> checkedValues,
     checkedGraphs.add(graph);
     for (int i = 0; i < graph.nextGraphs!.length; i++) {
       if (!checkedGraphs.contains(graph.nextGraphs![i])) {
-        searchGraph(
+        BFSgraph(
             searchValue, graph.nextGraphs![i], checkedValues, checkedGraphs);
         return;
       }
     }
+  } else {
+    debugPrint('Искомого значения нет в графе');
   }
 }
