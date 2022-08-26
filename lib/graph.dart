@@ -77,7 +77,7 @@ void BFSgraph(int searchValue, MyGraph graph, List<int> checkedValues,
   }
 }
 
-// Поиск в ширину (Depth-first search)
+// Поиск в глубину (Depth-first search)
 // ignore: non_constant_identifier_names
 void DFSgraph(int searchValue, MyGraph graph, List<MyGraph> searchedGraphs) {
   if (graph.value == searchValue) {
