@@ -126,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   onPressed: () {
                     MyGraph graph = initGraph();
-                    print('0');
+                    searchGraph(6, graph, [], []);
                   }),
             ),
           ],

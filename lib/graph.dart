@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class MyGraph {
   int value;
   List<MyGraph>? nextGraphs;
@@ -21,6 +23,7 @@ MyGraph initGraph() {
   MyGraph fourthGraph = MyGraph(3);
   MyGraph fifthGraph = MyGraph(4);
   MyGraph sixthGraph = MyGraph(5);
+  MyGraph seventhGraph = MyGraph(6);
 
   firstGraph.addNextGraph(secondGraph);
   firstGraph.addNextGraph(thirdGraph);
@@ -36,5 +39,36 @@ MyGraph initGraph() {
   fifthGraph.addNextGraph(secondGraph);
   fifthGraph.addNextGraph(sixthGraph);
 
+  sixthGraph.addNextGraph(seventhGraph);
+
   return firstGraph;
+}
+
+void searchGraph(int searchValue, MyGraph graph, List<int> checkedValues,
+    List<MyGraph> checkedGraphs) {
+  if (graph.value == searchValue) {
+    debugPrint('Искомое значение найдено');
+    return;
+  } else {
+    checkedValues.add(graph.value);
+    for (int i = 0; i < graph.nextGraphs!.length; i++) {
+      if (!checkedValues.contains(graph.nextGraphs![i].value)) {
+        debugPrint('Проверяем ${graph.nextGraphs![i].value}');
+        if (graph.nextGraphs![i].value == searchValue) {
+          debugPrint('Искомое значение найдено');
+          return;
+        } else {
+          checkedValues.add(graph.nextGraphs![i].value);
+        }
+      }
+    }
+    checkedGraphs.add(graph);
+    for (int i = 0; i < graph.nextGraphs!.length; i++) {
+      if (!checkedGraphs.contains(graph.nextGraphs![i])) {
+        searchGraph(
+            searchValue, graph.nextGraphs![i], checkedValues, checkedGraphs);
+        return;
+      }
+    }
+  }
 }
